@@ -1,7 +1,8 @@
 import React from 'react';
+import EmployeesView from './EmployeesView'
 
 function App() {
-  return <div>Employees management</div>
+  return <EmployeesView />
 }
 
 export default App;
