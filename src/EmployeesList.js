@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { API_URL } from './config';
 
 function EmployeesList() {
@@ -23,7 +24,11 @@ function EmployeesList() {
 
   return (
     <ul>
-      { employees.map(employee => <li key={employee.id}>{ employee.employee_name }</li>) }
+      { employees.map(employee => (
+        <li key={employee.id}>
+          <Link to={`/employee/${employee.id}`}>{ employee.employee_name }</Link>
+        </li>
+      ))}
     </ul>
   );
 }
