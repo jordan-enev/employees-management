@@ -4,12 +4,10 @@ import { API_URL } from './config';
 
 function EmployeesList() {
   const [employees, setEmployees] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchEmployees() {
-      setIsLoading(true);
-
       const response = await fetch(`${API_URL}/employee`);
       const employees = await response.json();
 
