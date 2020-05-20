@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
-import { API_URL } from './config';
+import { API_URL } from '../../config';
 import { reducer, initialState } from './reducer';
-import { sortASC, sortDESC } from './utils/sorting';
+import { sortASC, sortDESC } from '../../utils/sorting';
 import EmployeesSearch from './EmployeesSearch';
 import EmployeesSorting from './EmployeesSorting';
 import EmployeesList from './EmployeesList';

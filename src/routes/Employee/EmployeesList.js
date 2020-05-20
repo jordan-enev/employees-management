@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { API_URL } from './config';
+import { API_URL } from '../../config';
 import { DispatchContext } from './EmployeesView';
 
 function EmployeesList({ employees, onDelete }) {

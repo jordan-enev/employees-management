@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { API_URL } from './config';
+import { API_URL } from '../../config';
 import EmployeeForm from './EmployeeForm'
 
 function EmployeeEdit() {
