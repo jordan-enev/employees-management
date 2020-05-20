@@ -1,5 +1,6 @@
 import React  from 'react';
 import { API_URL } from '../../config';
+import { Row, Col } from 'react-bootstrap';
 import EmployeeForm from './EmployeeForm'
 
 function EmployeeCreate() {
@@ -16,7 +17,12 @@ function EmployeeCreate() {
   };
 
   return (
-    <EmployeeForm onSubmit={onSubmit} />
+    <Row>
+      <Col>
+        <h4>Create Employee</h4>
+        <EmployeeForm onSubmit={onSubmit} />
+      </Col>
+    </Row>
   );
 }
 

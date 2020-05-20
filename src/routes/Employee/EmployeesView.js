@@ -32,7 +32,7 @@ function EmployeesView() {
   }
 
   return <DispatchContext.Provider value={dispatch}>
-    <Row className='my-4'>
+    <Row className='mb-4'>
       <Col xs='8'><EmployeesSearch /></Col>
       <Col xs='4'><EmployeesSorting /></Col>
     </Row>

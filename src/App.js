@@ -14,7 +14,7 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <Container>
+        <Container className='my-4'>
           <Switch>
             <Route exact path='/'>
               <EmployeesView />
