@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { DispatchContext } from './EmployeesView';
 
-const sortASC = (items, field) => items.slice().sort((a, b) => a[field] - b[field]);
-const sortDESC = (items, field) => items.slice().sort((a, b) => b[field] - a[field]);
+function EmployeesSorting() {
+  const dispatch = useContext(DispatchContext);
 
-function EmployeesSorting({ employees, onSorting }) {
   function sortEmployees(e) {
     const [ field, direction ] = e.target.value.split('.');
-    const sortingFunc = direction === 'asc' ? sortASC : sortDESC;
-    onSorting(sortingFunc(employees, field));
+    dispatch({ type: 'sort', payload: { field, direction } })
   }
 
   return <>

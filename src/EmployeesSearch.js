@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DispatchContext } from './EmployeesView';
 
-function EmployeesSearch({ employees, onSearch }) {
+function EmployeesSearch() {
+  const dispatch = useContext(DispatchContext);
+
   function filterEmployees(e) {
     const searchTerm = e.target.value.toLowerCase();
-    const filteredEmployees = employees.filter(({ employee_name }) => (
-      employee_name.toLowerCase().indexOf(searchTerm) > -1)
-    );
-
-    onSearch(filteredEmployees);
+    dispatch({ type: 'filter', payload: { searchTerm } })
   }
 
   return (
