@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../../config';
-import EmployeeForm from './EmployeeForm'
+import { Col, Row } from "react-bootstrap";
+import EmployeeForm from './EmployeeForm';
 
 function EmployeeEdit() {
   const [employee, setEmployee] = useState({});
@@ -38,7 +39,12 @@ function EmployeeEdit() {
   if (isLoading) return <span>Loading ...</span>;
 
   return (
-    <EmployeeForm employee={employee} onSubmit={onSubmit} />
+    <Row>
+      <Col>
+        <h4>Edit Employee</h4>
+        <EmployeeForm employee={employee} onSubmit={onSubmit} />
+      </Col>
+    </Row>
   );
 }
 
