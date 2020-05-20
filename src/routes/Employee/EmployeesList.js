@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { DispatchContext } from './EmployeesView';
+import { Table, Button } from 'react-bootstrap';
 
 function EmployeesList({ employees, onDelete }) {
   const dispatch = useContext(DispatchContext);
@@ -22,14 +23,33 @@ function EmployeesList({ employees, onDelete }) {
   if (isLoading) return <span>Loading ...</span>;
 
   return (
-    <ul>
-      { employees.map(employee => (
-        <li key={employee.id}>
-          <Link to={`/employee/${employee.id}`}>{ employee.employee_name }</Link>
-          <button onClick={() => onDelete(employee)}>Delete</button>
-        </li>
-      ))}
-    </ul>
+    <Table responsive>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Salary</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        { employees.map(employee => (
+          <tr key={employee.id}>
+            <td>{ employee.id }</td>
+            <td><Link to={`/employee/${employee.id}`}>{ employee.employee_name }</Link></td>
+            <td>{ employee.employee_age }</td>
+            <td>{ employee.employee_salary }</td>
+            <td colSpan={2}>
+              <Link to={`/employee/${employee.id}`} className='mr-2'>
+                <Button variant='outline-secondary' size='sm'>Edit</Button>
+              </Link>
+              <Button variant='outline-danger' size='sm' onClick={() => onDelete(employee)}>Delete</Button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 }
 
