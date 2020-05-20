@@ -36,7 +36,11 @@ function EmployeesView() {
       <Col xs='8'><EmployeesSearch /></Col>
       <Col xs='4'><EmployeesSorting /></Col>
     </Row>
-    <EmployeesList employees={getEmployees()} onDelete={deleteEmployee} />
+    <Row>
+      <Col>
+        <EmployeesList employees={getEmployees()} onDelete={deleteEmployee} />
+      </Col>
+    </Row>
   </DispatchContext.Provider>
 }
 
