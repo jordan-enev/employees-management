@@ -1,0 +1,4 @@
+.navbar-brand a, .navbar-brand a:hover {
+  color: #000;
+  text-transform: uppercase;
+}
