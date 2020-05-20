@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL } from './config';
 import EmployeesSearch from './EmployeesSearch';
+import EmployeesSorting from './EmployeesSorting';
 
 function EmployeesList() {
   const [employees, setEmployees] = useState([]);
-  const [filteredEmployees, setFilteredEmployees] = useState(null);
+  const [computedEmployees, setComputedEmployees] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   async function fetchEmployees() {
@@ -22,11 +23,11 @@ function EmployeesList() {
     });
 
     setEmployees(employees.filter(({ id }) => id !== employee.id));
-    setFilteredEmployees(filteredEmployees.filter(({ id }) => id !== employee.id));
+    setComputedEmployees(computedEmployees.filter(({ id }) => id !== employee.id));
   }
 
   function getEmployees() {
-    return filteredEmployees || employees;
+    return computedEmployees || employees;
   }
 
   useEffect(() => {
@@ -36,7 +37,8 @@ function EmployeesList() {
   if (isLoading) return <span>Loading ...</span>;
 
   return <>
-    <EmployeesSearch employees={employees} onSearch={setFilteredEmployees} />
+    <EmployeesSearch employees={employees} onSearch={setComputedEmployees} />
+    <EmployeesSorting employees={getEmployees()} onSorting={setComputedEmployees} />
     <ul>
       { getEmployees().map(employee => (
         <li key={employee.id}>
