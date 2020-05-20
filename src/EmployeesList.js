@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL } from './config';
+import EmployeesSearch from './EmployeesSearch';
 
 function EmployeesList() {
   const [employees, setEmployees] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   async function fetchEmployees() {
@@ -20,6 +22,11 @@ function EmployeesList() {
     });
 
     setEmployees(employees.filter(({ id }) => id !== employee.id));
+    setFilteredEmployees(filteredEmployees.filter(({ id }) => id !== employee.id));
+  }
+
+  function getEmployees() {
+    return filteredEmployees || employees;
   }
 
   useEffect(() => {
@@ -28,16 +35,17 @@ function EmployeesList() {
 
   if (isLoading) return <span>Loading ...</span>;
 
-  return (
+  return <>
+    <EmployeesSearch employees={employees} onSearch={setFilteredEmployees} />
     <ul>
-      { employees.map(employee => (
+      { getEmployees().map(employee => (
         <li key={employee.id}>
           <Link to={`/employee/${employee.id}`}>{ employee.employee_name }</Link>
           <button onClick={() => deleteEmployee(employee)}>Delete</button>
         </li>
       ))}
     </ul>
-  );
+  </>
 }
 
 export default EmployeesList;
