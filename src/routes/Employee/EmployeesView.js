@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import { API_URL } from '../../config';
 import { reducer, initialState } from './reducer';
 import { sortASC, sortDESC } from '../../utils/sorting';
+import { Row, Col } from 'react-bootstrap';
 import EmployeesSearch from './EmployeesSearch';
 import EmployeesSorting from './EmployeesSorting';
 import EmployeesList from './EmployeesList';
@@ -31,8 +32,10 @@ function EmployeesView() {
   }
 
   return <DispatchContext.Provider value={dispatch}>
-    <EmployeesSearch />
-    <EmployeesSorting />
+    <Row className='my-4'>
+      <Col xs='8'><EmployeesSearch /></Col>
+      <Col xs='4'><EmployeesSorting /></Col>
+    </Row>
     <EmployeesList employees={getEmployees()} onDelete={deleteEmployee} />
   </DispatchContext.Provider>
 }

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { FormControl } from 'react-bootstrap';
 import { DispatchContext } from './EmployeesView';
 
 function EmployeesSearch() {
@@ -10,7 +11,7 @@ function EmployeesSearch() {
   }
 
   return (
-    <input type='text' onChange={filterEmployees} />
+    <FormControl type='text' placeholder='Search by name ...' onChange={filterEmployees} />
   );
 }
 

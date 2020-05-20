@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import { DispatchContext } from './EmployeesView';
+import { FormControl } from 'react-bootstrap';
 
 function EmployeesSorting() {
   const dispatch = useContext(DispatchContext);
@@ -9,18 +10,17 @@ function EmployeesSorting() {
     dispatch({ type: 'sort', payload: { field, direction } })
   }
 
-  return <>
-    <label>Sort by:</label>
-    <select defaultValue='' onChange={sortEmployees}>
-      <option disabled value=''>Please select</option>
+  return (
+    <FormControl as="select" defaultValue='' onChange={sortEmployees}>
+      <option disabled value=''>Sort by</option>
       <option value='id.asc'>ID ASC</option>
       <option value='id.desc'>ID DESC</option>
       <option value='employee_age.asc'>Age ASC</option>
       <option value='employee_age.desc'>Age DESC</option>
       <option value='employee_salary.asc'>Salary ASC</option>
       <option value='employee_salary.desc'>Salary DESC</option>
-    </select>
-  </>
+    </FormControl>
+  );
 }
 
 export default EmployeesSorting;
