@@ -4,13 +4,18 @@ import { useForm } from 'react-hook-form';
 import { employeeType } from './proptypes';
 import { Form, Button } from 'react-bootstrap';
 
-function EmployeeForm({ employee, onSubmit }) {
-  const { register, handleSubmit, errors } = useForm({
+function EmployeeForm({ employee, onSubmit, shouldResetOnSubmit }) {
+  const { register, handleSubmit, errors, reset } = useForm({
     defaultValues: employee
   });
 
+  async function onSubmitHandler(data) {
+    await onSubmit(data);
+    shouldResetOnSubmit && reset();
+  }
+
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
+    <Form onSubmit={handleSubmit(onSubmitHandler)} data-testid='form'>
       <Form.Group>
         <Form.Label>Name</Form.Label>
         <Form.Control type='text' placeholder='Enter name' name='employee_name' ref={register({ required: true })} />
@@ -51,7 +56,8 @@ function EmployeeForm({ employee, onSubmit }) {
 }
 EmployeeForm.propTypes = {
   employee: employeeType,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  shouldResetOnSubmit: PropTypes.bool,
 }
 
 export default EmployeeForm;

@@ -33,7 +33,7 @@ function EmployeeCreate() {
         <Card>
           <Card.Header as='h5'>Create Employee</Card.Header>
           <Card.Body>
-            <EmployeeForm onSubmit={onSubmit} />
+            <EmployeeForm onSubmit={onSubmit} shouldResetOnSubmit />
           </Card.Body>
         </Card>
       </Col>
