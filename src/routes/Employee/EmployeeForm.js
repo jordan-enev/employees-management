@@ -35,10 +35,10 @@ function EmployeeForm({ employee, onSubmit }) {
       <Form.Group>
         <Form.Label>Salary</Form.Label>
         <Form.Control type='text' placeholder='Enter salary' name='employee_salary'
-          ref={register({ required: true })} />
+          ref={register({ required: true, pattern: /\d+/ })} />
         { errors.employee_salary &&
           <Form.Text className='text-danger'>
-            Salary is required.
+            Please enter number for salary.
           </Form.Text>
         }
       </Form.Group>
