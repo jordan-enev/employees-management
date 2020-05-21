@@ -48,10 +48,11 @@ function EmployeesList({ employees, onDelete }) {
             <td>{ employee.employee_age }</td>
             <td>{ employee.employee_salary }</td>
             <td colSpan={2}>
-              <Link to={`/employee/${employee.id}`} className='mr-2'>
-                <Button variant='outline-secondary' size='sm'>Edit</Button>
+              <Link to={`/employee/${employee.id}`}>
+                <Button variant='outline-secondary' size='sm' className='mr-2 mb-2 mb-md-0'>Edit</Button>
               </Link>
-              <Button variant='outline-danger' size='sm' onClick={() => onDelete(employee)}>Delete</Button>
+              <Button variant='outline-danger' size='sm' className='mb-2 mb-md-0'
+                onClick={() => onDelete(employee)}>Delete</Button>
             </td>
           </tr>
         ))}
