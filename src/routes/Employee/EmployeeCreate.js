@@ -1,6 +1,6 @@
 import React  from 'react';
 import { API_URL } from '../../config';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Card } from 'react-bootstrap';
 import { notify } from '../../utils/notifications';
 import EmployeeForm from './EmployeeForm'
 
@@ -27,8 +27,14 @@ function EmployeeCreate() {
   return (
     <Row>
       <Col>
-        <h4>Create Employee</h4>
-        <EmployeeForm onSubmit={onSubmit} />
+        <Card>
+          <Card.Header as='h5'>Create Employee</Card.Header>
+          <Card.Body>
+            <Card.Text>
+              <EmployeeForm onSubmit={onSubmit} />
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </Col>
     </Row>
   );
