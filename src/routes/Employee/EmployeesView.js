@@ -15,8 +15,10 @@ function EmployeesView() {
   const [{ employees, filtered, sort }, dispatch] = useReducer(reducer, initialState);
 
   function getEmployees() {
+    // Get the filtered employees only
     let normalized = filtered.map(id => employees.find(employee => id === employee.id ));
 
+    // Apply sorting
     if (sort) {
       const sortingFunc = sort.direction === 'asc' ? sortASC : sortDESC;
       normalized.sort(sortingFunc(sort.field));

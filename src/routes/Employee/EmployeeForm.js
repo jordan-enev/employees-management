@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+import { employeeType } from './proptypes';
 import { Form, Button } from 'react-bootstrap';
 
 function EmployeeForm({ employee, onSubmit }) {
@@ -46,6 +48,10 @@ function EmployeeForm({ employee, onSubmit }) {
       </Button>
     </Form>
   );
+}
+EmployeeForm.propTypes = {
+  employee: employeeType,
+  onSubmit: PropTypes.func.isRequired
 }
 
 export default EmployeeForm;

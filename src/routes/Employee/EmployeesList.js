@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { handleErrors } from '../../utils/errors';
+import { employeeType } from './proptypes';
 import { Table, Button } from 'react-bootstrap';
 import { DispatchContext } from './EmployeesView';
 import Loader from '../../components/Loader';
@@ -56,6 +58,11 @@ function EmployeesList({ employees, onDelete }) {
       </tbody>
     </Table>
   );
+}
+
+EmployeesList.propTypes = {
+  employees: PropTypes.arrayOf(employeeType),
+  onDelete: PropTypes.func.isRequired
 }
 
 export default EmployeesList;

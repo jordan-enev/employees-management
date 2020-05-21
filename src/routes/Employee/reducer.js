@@ -1,6 +1,13 @@
 export const initialState = {
+  // Keep all the raw employees objects
   employees: [],
+  // Keep the filtered employees' ids, according to the search bar term term.
   filtered: [],
+  // Keep the sorting criteria here as object, if the sorting is applied. For example:
+  // {
+  //   direction: 'asc|desc',
+  //   field: 'employee_age'
+  // }
   sorting: null
 };
 
@@ -10,6 +17,9 @@ export function reducer(state, action) {
       return {
         ...state,
         employees: action.payload.employees,
+        // We're setting initial filtered ids here,
+        // in order to simplify employees getting/rendering in the components later,
+        // no matter a filter is applied or not.
         filtered: action.payload.employees.map(({ id }) => id)
       };
     case 'filter':
