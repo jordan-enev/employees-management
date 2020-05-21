@@ -63,9 +63,7 @@ function EmployeeEdit() {
             <Card>
               <Card.Header as='h5'>Edit Employee</Card.Header>
               <Card.Body>
-                <Card.Text>
-                  <EmployeeForm employee={employee} onSubmit={onSubmit} />
-                </Card.Text>
+                <EmployeeForm employee={employee} onSubmit={onSubmit} />
               </Card.Body>
             </Card>
           </Col>
