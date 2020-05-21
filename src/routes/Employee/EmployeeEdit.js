@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../../config';
-import { Col, Row } from "react-bootstrap";
+import { notify } from '../../utils/notifications';
+import { Col, Row } from 'react-bootstrap';
 import EmployeeForm from './EmployeeForm';
 
 function EmployeeEdit() {
@@ -17,6 +18,11 @@ function EmployeeEdit() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
+    });
+
+    notify({
+      title: 'Success!',
+      message: 'Employee is updated successfully!',
     });
 
     return request;

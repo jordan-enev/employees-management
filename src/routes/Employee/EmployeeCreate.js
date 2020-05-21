@@ -1,12 +1,13 @@
 import React  from 'react';
 import { API_URL } from '../../config';
 import { Row, Col } from 'react-bootstrap';
+import { notify } from '../../utils/notifications';
 import EmployeeForm from './EmployeeForm'
 
 function EmployeeCreate() {
 
-  const onSubmit = data => {
-    return fetch(`${API_URL}/employee`, {
+  const onSubmit = async data => {
+    const request = await fetch(`${API_URL}/employee`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -14,6 +15,13 @@ function EmployeeCreate() {
       },
       body: JSON.stringify(data)
     });
+
+    notify({
+      title: 'Success!',
+      message: 'Employee is created successfully!'
+    });
+
+    return request;
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import { API_URL } from '../../config';
 import { reducer, initialState } from './reducer';
 import { sortASC, sortDESC } from '../../utils/sorting';
+import { notify } from '../../utils/notifications';
 import { Row, Col } from 'react-bootstrap';
 import EmployeesSearch from './EmployeesSearch';
 import EmployeesSorting from './EmployeesSorting';
@@ -26,6 +27,11 @@ function EmployeesView() {
   async function deleteEmployee(employee) {
     await fetch(`${API_URL}/employee/${employee.id}`, {
       method: 'DELETE'
+    });
+
+    notify({
+      title: 'Success!',
+      message: 'Employee is deleted successfully!'
     });
 
     dispatch({ type: 'delete', payload: employee })
