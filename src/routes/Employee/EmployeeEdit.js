@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { notify } from '../../utils/notifications';
 import {Card, Col, Row} from 'react-bootstrap';
+import Loader from '../../components/Loader';
 import EmployeeForm from './EmployeeForm';
 
 function EmployeeEdit() {
@@ -42,7 +43,7 @@ function EmployeeEdit() {
     fetchEmployee();
   }, [id]);
 
-  if (isLoading) return <span>Loading ...</span>;
+  if (isLoading) return <Loader />;
 
   return (
     <Row>

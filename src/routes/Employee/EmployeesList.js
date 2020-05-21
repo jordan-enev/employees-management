@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { DispatchContext } from './EmployeesView';
 import { Table, Button } from 'react-bootstrap';
+import Loader from '../../components/Loader';
 
 function EmployeesList({ employees, onDelete }) {
   const dispatch = useContext(DispatchContext);
@@ -20,7 +21,7 @@ function EmployeesList({ employees, onDelete }) {
     fetchEmployees();
   }, [dispatch]);
 
-  if (isLoading) return <span>Loading ...</span>;
+  if (isLoading) return <Loader />;
 
   return (
     <Table responsive>
