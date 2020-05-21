@@ -37,6 +37,10 @@ function EmployeesView() {
     dispatch({ type: 'delete', payload: employee })
   }
 
+  function handleDelete(employee) {
+    window.confirm('Do you really want to delete the employee?') && deleteEmployee(employee);
+  }
+
   return <DispatchContext.Provider value={dispatch}>
     <Row className='mb-4'>
       <Col xs='8'><EmployeesSearch /></Col>
@@ -44,7 +48,7 @@ function EmployeesView() {
     </Row>
     <Row>
       <Col>
-        <EmployeesList employees={getEmployees()} onDelete={deleteEmployee} />
+        <EmployeesList employees={getEmployees()} onDelete={handleDelete} />
       </Col>
     </Row>
   </DispatchContext.Provider>
