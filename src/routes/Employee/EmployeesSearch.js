@@ -6,8 +6,8 @@ function EmployeesSearch() {
   const dispatch = useContext(DispatchContext);
 
   function filterEmployees(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    dispatch({ type: 'filter', payload: { searchTerm } })
+    const searchTerm = e.target.value;
+    dispatch({ type: 'filter', payload: { searchTerm } });
   }
 
   return (

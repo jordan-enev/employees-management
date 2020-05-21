@@ -8,7 +8,7 @@ export const initialState = {
   //   direction: 'asc|desc',
   //   field: 'employee_age'
   // }
-  sorting: null
+  sort: null
 };
 
 export function reducer(state, action) {
@@ -23,8 +23,11 @@ export function reducer(state, action) {
         filtered: action.payload.employees.map(({ id }) => id)
       };
     case 'filter':
+      // Convert `searchTerm` to lowerCase and the `employee_name` field in the filter later,
+      // our search/filter algorithm will be case insensitive.
+      const searchTerm = action.payload.searchTerm.toLowerCase();
       const filteredEmployees = state.employees.filter(({ employee_name }) => (
-        employee_name.toLowerCase().indexOf(action.payload.searchTerm) > -1
+        employee_name.toLowerCase().indexOf(searchTerm) > -1
       ));
       const filtered = filteredEmployees.map(({id }) => id);
 
