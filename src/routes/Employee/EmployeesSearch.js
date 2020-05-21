@@ -11,7 +11,7 @@ function EmployeesSearch() {
   }
 
   return (
-    <FormControl type='text' placeholder='Search by name ...' onChange={filterEmployees} />
+    <FormControl type='text' placeholder='Search by name ...' onChange={filterEmployees} data-testid='search'/>
   );
 }
 

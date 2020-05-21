@@ -11,7 +11,7 @@ function EmployeesSorting() {
   }
 
   return (
-    <FormControl as="select" defaultValue='' onChange={sortEmployees}>
+    <FormControl as="select" defaultValue='' onChange={sortEmployees} data-testid='sort'>
       <option disabled value=''>Sort by</option>
       <option value='id.asc'>ID ASC</option>
       <option value='id.desc'>ID DESC</option>

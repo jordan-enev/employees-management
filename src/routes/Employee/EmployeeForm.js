@@ -10,7 +10,7 @@ function EmployeeForm({ employee, onSubmit }) {
   });
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
       <Form.Group>
         <Form.Label>Name</Form.Label>
         <Form.Control type='text' placeholder='Enter name' name='employee_name' ref={register({ required: true })} />
