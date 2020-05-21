@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import ReactNotification from 'react-notifications-component';
 import Navbar from './components/Navbar';
 import EmployeesView from './routes/Employee/EmployeesView';
 import EmployeeCreate from './routes/Employee/EmployeeCreate';
 import EmployeeEdit from './routes/Employee/EmployeeEdit';
+import GenericNotFound from './components/GenericNotFound';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,6 +30,8 @@ function App() {
             <Route path='/employee/:id'>
               <EmployeeEdit />
             </Route>
+            <Route path='/404' component={GenericNotFound} />
+            <Redirect to='/404' />
           </Switch>
         </Container>
       </Router>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { notify } from '../../utils/notifications';
-import {Card, Col, Row} from 'react-bootstrap';
+import { handleErrors } from '../../utils/errors';
+import { Card, Col, Row } from 'react-bootstrap';
 import Loader from '../../components/Loader';
 import EmployeeForm from './EmployeeForm';
 
@@ -10,9 +11,10 @@ function EmployeeEdit() {
   const [employee, setEmployee] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
+  const history = useHistory();
 
   const onSubmit = async data => {
-    const request = await fetch(`${API_URL}/employee/${id}`, {
+    const response = await fetch(`${API_URL}/employee/${id}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -21,12 +23,14 @@ function EmployeeEdit() {
       body: JSON.stringify(data)
     });
 
+    if (!response.ok) return handleErrors(response);
+
     notify({
       title: 'Success!',
       message: 'Employee is updated successfully!',
     });
 
-    return request;
+    return response;
   };
 
   useEffect(() => {
@@ -34,14 +38,20 @@ function EmployeeEdit() {
       setIsLoading(true);
 
       const response = await fetch(`${API_URL}/employee/${id}`);
-      const employee = await response.json();
 
+      if (!response.ok) {
+        if (response.status === 404) history.push('/404');
+
+        return handleErrors(response);
+      }
+
+      const employee = await response.json();
       setEmployee(employee);
       setIsLoading(false);
     }
 
     fetchEmployee();
-  }, [id]);
+  }, [id, history]);
 
   if (isLoading) return <Loader />;
 

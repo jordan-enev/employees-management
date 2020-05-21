@@ -3,6 +3,7 @@ import { API_URL } from '../../config';
 import { reducer, initialState } from './reducer';
 import { sortASC, sortDESC } from '../../utils/sorting';
 import { notify } from '../../utils/notifications';
+import { handleErrors } from '../../utils/errors';
 import { Row, Col } from 'react-bootstrap';
 import EmployeesSearch from './EmployeesSearch';
 import EmployeesSorting from './EmployeesSorting';
@@ -25,16 +26,20 @@ function EmployeesView() {
   }
 
   async function deleteEmployee(employee) {
-    await fetch(`${API_URL}/employee/${employee.id}`, {
+    const response = await fetch(`${API_URL}/employee/${employee.id}`, {
       method: 'DELETE'
     });
+
+    if (!response.ok) return handleErrors(response);
 
     notify({
       title: 'Success!',
       message: 'Employee is deleted successfully!'
     });
 
-    dispatch({ type: 'delete', payload: employee })
+    dispatch({ type: 'delete', payload: employee });
+
+    return response;
   }
 
   function handleDelete(employee) {

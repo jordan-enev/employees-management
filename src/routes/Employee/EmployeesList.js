@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../config';
-import { DispatchContext } from './EmployeesView';
+import { handleErrors } from '../../utils/errors';
 import { Table, Button } from 'react-bootstrap';
+import { DispatchContext } from './EmployeesView';
 import Loader from '../../components/Loader';
 
 function EmployeesList({ employees, onDelete }) {
@@ -12,6 +13,9 @@ function EmployeesList({ employees, onDelete }) {
   useEffect(() => {
     async function fetchEmployees() {
       const response = await fetch(`${API_URL}/employee`);
+
+      if (!response.ok) return handleErrors(response);
+
       const employees = await response.json();
 
       dispatch({ type: 'receive', payload: { employees } });
